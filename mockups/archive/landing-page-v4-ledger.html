@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BL·OWN — The directory of verified Black-owned business</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,450;0,9..144,560;1,9..144,450&family=Space+Grotesk:wght@500;600;700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root[data-theme="dark"]{
+    --bg:#131518; --bg-alt:#191C20; --ink:#EDEFF0; --muted:#9A9E9F; --muted-dim:#6C7072;
+    --rule:rgba(237,239,240,0.15); --rule-strong:rgba(237,239,240,0.28);
+    --gold:#C79A3E; --gold-bright:#D9B45C; --red:#9A493F; --green:#4E7B62;
+    --on-gold:#131518;
+  }
+  :root[data-theme="light"]{
+    --bg:#FBF7EE; --bg-alt:#F2EBDA; --ink:#221E18; --muted:#726C60; --muted-dim:#9C9585;
+    --rule:rgba(34,30,24,0.16); --rule-strong:rgba(34,30,24,0.3);
+    --gold:#A97B26; --gold-bright:#C79A3E; --red:#8A3E33; --green:#3F664F;
+    --on-gold:#FBF7EE;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--ink); font-family:'Public Sans',sans-serif; transition:background 0.25s ease, color 0.25s ease; }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:1220px; margin:0 auto; padding:0 32px; }
+  @media(max-width:768px){ .wrap{ padding:0 20px; } }
+
+  /* ---------- nav ---------- */
+  header{ border-bottom:1px solid var(--rule); }
+  nav{ display:flex; align-items:center; justify-content:space-between; padding:20px 0; }
+  .brand{ display:flex; align-items:center; gap:10px; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:18px; letter-spacing:-0.01em; }
+  .seal{ width:26px; height:26px; border-radius:50%; background:conic-gradient(from 210deg,var(--gold-bright),var(--gold),#7C5E22,var(--gold),var(--gold-bright));
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.35), inset 0 -2px 3px rgba(0,0,0,0.35);
+    display:flex; align-items:center; justify-content:center; transition:transform 0.4s cubic-bezier(.2,.9,.3,1.3); }
+  .seal:hover{ transform:rotate(90deg); }
+  .seal svg{ width:11px; height:11px; }
+  .nav-links{ display:flex; gap:30px; font-size:13.5px; color:var(--muted); }
+  .nav-links a{ border-bottom:1px solid transparent; padding-bottom:2px; }
+  .nav-links a:hover{ color:var(--ink); border-color:var(--muted-dim); }
+  @media(max-width:880px){ .nav-links{ display:none; } }
+  .nav-right{ display:flex; align-items:center; gap:16px; }
+  .theme-toggle{ display:flex; gap:4px; border:1px solid var(--rule-strong); border-radius:20px; padding:4px; }
+  .theme-toggle span{ font-size:10.5px; padding:5px 10px; border-radius:14px; color:var(--muted-dim); cursor:pointer; }
+  .theme-toggle span.active{ background:var(--gold); color:var(--on-gold); font-weight:600; }
+  .nav-cta{ font-size:13.5px; font-weight:600; color:var(--ink); border-bottom:1px solid var(--gold); padding-bottom:2px; }
+
+  /* ---------- hero: the index ---------- */
+  .hero{ padding:64px 0 0; }
+  .hero-top{ display:grid; grid-template-columns:0.85fr 1.15fr; gap:64px; align-items:start; }
+  @media(max-width:960px){ .hero-top{ grid-template-columns:1fr; gap:36px; } }
+
+  .hero-head h1{ font-family:'Fraunces',serif; font-weight:450; font-size:clamp(34px,4.6vw,52px); line-height:1.08; letter-spacing:-0.01em; }
+  .hero-head p{ margin-top:18px; color:var(--muted); font-size:15.5px; line-height:1.65; max-width:38ch; }
+  .hero-ctas{ display:flex; gap:22px; margin-top:28px; align-items:center; flex-wrap:wrap; }
+  .btn-primary{ background:var(--gold); color:var(--on-gold); font-weight:600; font-size:14px; padding:13px 22px; border-radius:3px; }
+  .btn-text{ font-size:13.5px; font-weight:600; color:var(--ink); border-bottom:1px solid var(--rule-strong); padding-bottom:3px; }
+  .btn-text:hover{ border-color:var(--gold); }
+
+  .index{ border-top:1px solid var(--rule-strong); }
+  .entry{ display:flex; align-items:baseline; gap:10px; padding:9px 0; border-bottom:1px solid var(--rule);
+    opacity:0; transform:translateY(6px); animation:rowIn 0.5s ease forwards; }
+  @keyframes rowIn{ to{ opacity:1; transform:translateY(0); } }
+  .entry-no{ font-family:'Space Grotesk',sans-serif; font-size:11.5px; color:var(--muted-dim); width:26px; flex-shrink:0; }
+  .entry-name{ font-family:'Fraunces',serif; font-size:15.5px; font-weight:450; white-space:nowrap; }
+  .leader{ flex:1; border-bottom:1px dotted var(--rule-strong); margin-bottom:4px; min-width:16px; }
+  .entry-meta{ font-size:12px; color:var(--muted); flex-shrink:0; white-space:nowrap; }
+  .entry-rating{ font-size:12.5px; color:var(--gold); flex-shrink:0; width:38px; text-align:right; }
+  .entry.highlight .entry-name{ color:var(--gold); }
+
+  .index-foot{ display:flex; justify-content:space-between; align-items:center; padding:16px 0; font-size:12px; color:var(--muted-dim); border-bottom:1px solid var(--rule-strong); flex-wrap:wrap; gap:8px; }
+  .index-foot b{ color:var(--gold); font-family:'Space Grotesk',sans-serif; }
+
+  /* ---------- three ways in ---------- */
+  section{ padding:80px 0; }
+  @media(max-width:768px){ section{ padding:52px 0; } }
+  .section-head{ max-width:52ch; margin-bottom:40px; }
+  .section-head h2{ font-family:'Fraunces',serif; font-weight:450; font-size:clamp(25px,3vw,32px); }
+  .section-head p{ color:var(--muted); margin-top:10px; font-size:14.5px; }
+
+  .paths{ background:var(--bg-alt); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
+  .path-list{ border-top:1px solid var(--rule-strong); }
+  .path-row{ display:grid; grid-template-columns:220px 1fr; gap:32px; padding:26px 0; border-bottom:1px solid var(--rule); }
+  @media(max-width:700px){ .path-row{ grid-template-columns:1fr; gap:8px; } }
+  .path-row h3{ font-family:'Fraunces',serif; font-weight:450; font-size:19px; }
+  .path-row p{ color:var(--muted); font-size:14px; line-height:1.6; max-width:52ch; }
+  .path-row a{ font-size:13px; font-weight:600; color:var(--gold); display:inline-block; margin-top:8px; }
+
+  /* ---------- verification ---------- */
+  .tiers{ display:flex; margin-top:8px; border-top:1px solid var(--rule-strong); }
+  .tier{ flex:1; padding:24px 24px 0 0; border-right:1px solid var(--rule); }
+  .tier:last-child{ border-right:none; }
+  .tier .tn{ font-family:'Space Grotesk',sans-serif; font-size:11.5px; color:var(--gold); }
+  .tier h3{ font-family:'Fraunces',serif; font-weight:450; font-size:17px; margin:8px 0 8px; }
+  .tier p{ color:var(--muted); font-size:13.5px; line-height:1.6; }
+  @media(max-width:800px){ .tiers{ flex-direction:column; } .tier{ border-right:none; border-bottom:1px solid var(--rule); padding:20px 0; } }
+
+  /* ---------- categories as sub-index ---------- */
+  .categories{ background:var(--bg-alt); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
+  .cat-cols{ display:grid; grid-template-columns:1fr 1fr; gap:0 48px; border-top:1px solid var(--rule-strong); }
+  @media(max-width:700px){ .cat-cols{ grid-template-columns:1fr; } }
+  .cat-row{ display:flex; align-items:baseline; gap:10px; padding:12px 0; border-bottom:1px solid var(--rule); }
+  .cat-row .cname{ font-family:'Fraunces',serif; font-size:15px; white-space:nowrap; }
+  .cat-row .cleader{ flex:1; border-bottom:1px dotted var(--rule-strong); margin-bottom:4px; }
+  .cat-row .ccount{ font-size:12px; color:var(--muted-dim); }
+
+  /* ---------- spotlight ---------- */
+  .spotlight{ border-top:1px solid var(--rule-strong); border-bottom:1px solid var(--rule-strong); padding:64px 0; }
+  .spotlight blockquote{ font-family:'Fraunces',serif; font-style:italic; font-weight:340; font-size:clamp(22px,2.6vw,28px); line-height:1.45; max-width:32ch; }
+  .spotlight cite{ display:block; margin-top:20px; font-style:normal; font-size:13px; color:var(--muted); }
+  .spotlight cite b{ color:var(--ink); font-weight:600; }
+
+  /* ---------- final cta ---------- */
+  .final{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; padding:56px 0; }
+  .final h2{ font-family:'Fraunces',serif; font-weight:450; font-size:clamp(24px,2.8vw,30px); max-width:16ch; }
+  .final .btn-primary{ flex-shrink:0; }
+
+  footer{ border-top:1px solid var(--rule); padding:36px 0; display:flex; justify-content:space-between; font-size:12.5px; color:var(--muted-dim); flex-wrap:wrap; gap:10px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <div class="brand"><div class="seal"><svg viewBox="0 0 32 32" fill="none"><path d="M8 17 L14 23 L24 9" stroke="var(--on-gold)" stroke-width="4" stroke-linecap="square"/></svg></div>BL·OWN</div>
+      <div class="nav-links">
+        <a href="#paths">How it works</a>
+        <a href="#trust">Verification</a>
+        <a href="#categories">Browse</a>
+        <a href="#spotlight">Stories</a>
+      </div>
+      <div class="nav-right">
+        <div class="theme-toggle" id="theme-toggle-btn"><span id="lbl-dark" class="active">Dark</span><span id="lbl-light">Light</span></div>
+        <a href="#" class="nav-cta">List your business</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-top">
+      <div class="hero-head">
+        <h1>Find it. Book it. Keep it Black&#8209;owned.</h1>
+        <p>Certified BL·OWN is the directory of verified Black-owned business, service, and product providers — searchable, reviewable, bookable.</p>
+        <div class="hero-ctas">
+          <a href="#" class="btn-primary">Browse the index</a>
+          <a href="#" class="btn-text">List your business, it's free</a>
+        </div>
+      </div>
+
+      <div class="index" id="index-list">
+        <div class="entry" style="animation-delay:0.05s"><span class="entry-no">001</span><span class="entry-name">Millbrook Kitchen</span><span class="leader"></span><span class="entry-meta">Catering, Allentown PA</span><span class="entry-rating">★4.9</span></div>
+        <div class="entry" style="animation-delay:0.1s"><span class="entry-no">002</span><span class="entry-name">Glow Atelier</span><span class="leader"></span><span class="entry-meta">Beauty, Allentown PA</span><span class="entry-rating">★5.0</span></div>
+        <div class="entry highlight" style="animation-delay:0.15s"><span class="entry-no">003</span><span class="entry-name">Rooted Renovations</span><span class="leader"></span><span class="entry-meta">Home services, 3.4mi</span><span class="entry-rating">★4.8</span></div>
+        <div class="entry" style="animation-delay:0.2s"><span class="entry-no">004</span><span class="entry-name">Field &amp; Frame Co.</span><span class="leader"></span><span class="entry-meta">Apparel, ships nationwide</span><span class="entry-rating">★4.7</span></div>
+        <div class="entry" style="animation-delay:0.25s"><span class="entry-no">005</span><span class="entry-name">Sable &amp; Stone Law</span><span class="leader"></span><span class="entry-meta">Legal, Allentown PA</span><span class="entry-rating">★4.9</span></div>
+        <div class="entry" style="animation-delay:0.3s"><span class="entry-no">006</span><span class="entry-name">Northside Auto Care</span><span class="leader"></span><span class="entry-meta">Automotive, 2.1mi</span><span class="entry-rating">★4.6</span></div>
+        <div class="entry" style="animation-delay:0.35s"><span class="entry-no">007</span><span class="entry-name">Harbor &amp; Hue Studio</span><span class="leader"></span><span class="entry-meta">Photography, Bethlehem PA</span><span class="entry-rating">★5.0</span></div>
+        <div class="entry" style="animation-delay:0.4s"><span class="entry-no">008</span><span class="entry-name">Copperline Bookkeeping</span><span class="leader"></span><span class="entry-meta">Professional, online</span><span class="entry-rating">★4.8</span></div>
+      </div>
+      <div class="index-foot"><span>Index continues — <b>12,401</b> businesses listed across 340 cities</span><span>Updated today</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="paths" id="paths">
+  <div class="wrap">
+    <div class="section-head"><h2>Three ways in, one directory</h2><p>Whether you're spending, hiring, or selling, it's the same index underneath.</p></div>
+    <div class="path-list">
+      <div class="path-row"><h3>For shoppers</h3><p>Search by product, category, or neighborhood. Filter by verification tier, rating, or "ships nationwide" and check out without leaving the site. <a href="#">Start browsing →</a></p></div>
+      <div class="path-row"><h3>For service seekers</h3><p>Compare verified pros, read real reviews, and request quotes directly — contractors, salons, consultants, and more. <a href="#">Find a pro →</a></p></div>
+      <div class="path-row"><h3>For business owners</h3><p>Create a profile, get verified, and reach customers who are specifically looking to buy Black. Free to list. <a href="#">List your business →</a></p></div>
+    </div>
+  </div>
+</section>
+
+<section id="trust">
+  <div class="wrap">
+    <div class="section-head"><h2>Verification you can actually trust</h2><p>Every entry carries a badge that tells you exactly how its ownership was confirmed.</p></div>
+    <div class="tiers">
+      <div class="tier"><div class="tn">TIER 1</div><h3>Self-Attested</h3><p>Owner confirms Black ownership at signup with a signed statement. Instant listing.</p></div>
+      <div class="tier"><div class="tn">TIER 2</div><h3>Verified</h3><p>Business documents and ID reviewed by our team, shown as a solid badge.</p></div>
+      <div class="tier"><div class="tn">TIER 3</div><h3>NMSDC-Certified</h3><p>Holds a recognized third-party MBE certification, confirmed against the registry.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="categories" id="categories">
+  <div class="wrap">
+    <div class="section-head"><h2>Browse by category</h2><p>From weekend errands to your next big contract.</p></div>
+    <div class="cat-cols">
+      <div>
+        <div class="cat-row"><span class="cname">Food &amp; Beverage</span><span class="cleader"></span><span class="ccount">1,840</span></div>
+        <div class="cat-row"><span class="cname">Beauty &amp; Wellness</span><span class="cleader"></span><span class="ccount">2,110</span></div>
+        <div class="cat-row"><span class="cname">Home Services</span><span class="cleader"></span><span class="ccount">960</span></div>
+        <div class="cat-row"><span class="cname">Professional &amp; Legal</span><span class="cleader"></span><span class="ccount">740</span></div>
+      </div>
+      <div>
+        <div class="cat-row"><span class="cname">Fashion &amp; Apparel</span><span class="cleader"></span><span class="ccount">1,320</span></div>
+        <div class="cat-row"><span class="cname">Arts &amp; Culture</span><span class="cleader"></span><span class="ccount">510</span></div>
+        <div class="cat-row"><span class="cname">Health &amp; Fitness</span><span class="cleader"></span><span class="ccount">680</span></div>
+        <div class="cat-row"><span class="cname">Finance &amp; Insurance</span><span class="cleader"></span><span class="ccount">390</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="spotlight" id="spotlight">
+  <div class="wrap">
+    <blockquote>"We got our first out-of-state client within a week of getting Verified. It's the first directory that's actually driven bookings, not just clicks."</blockquote>
+    <cite><b>Dana Ferris</b> — Founder, Millbrook Kitchen, entry no. 001</cite>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="final">
+      <h2>Ready to be found by the people looking for you?</h2>
+      <a href="#" class="btn-primary">List your business</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:10px;">
+    <span>© 2026 BL·OWN</span>
+    <span>Terms · Privacy · Contact</span>
+  </div>
+</footer>
+
+<script>
+document.getElementById('theme-toggle-btn').addEventListener('click', function(){
+  const html = document.documentElement;
+  const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  document.getElementById('lbl-dark').classList.toggle('active', next === 'dark');
+  document.getElementById('lbl-light').classList.toggle('active', next === 'light');
+});
+</script>
+
+</body>
+</html>
