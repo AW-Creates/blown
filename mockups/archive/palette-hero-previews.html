@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BL.OWN — palette previews in context</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,450;0,9..144,600&family=Space+Grotesk:wght@600;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:#0A0A0B; font-family:'Public Sans',sans-serif; }
+  .label-bar{ padding:22px 32px 10px; color:#8A867E; font-size:13px; letter-spacing:0.02em; border-top:1px solid rgba(255,255,255,0.08); }
+  .label-bar:first-child{ border-top:none; }
+  .label-bar b{ color:#F0EBE2; font-size:15px; font-family:'Fraunces',serif; font-weight:500; margin-right:8px; }
+
+  .hero-block{ padding:56px 32px 64px; }
+  .hero-inner{ max-width:1080px; margin:0 auto; display:grid; grid-template-columns:1.05fr 0.95fr; gap:40px; align-items:center; }
+  @media(max-width:860px){ .hero-inner{ grid-template-columns:1fr; } }
+
+  nav{ display:flex; align-items:center; justify-content:space-between; max-width:1080px; margin:0 auto 44px; }
+  .brand{ display:flex; align-items:center; gap:9px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:17px; }
+  .seal{ width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow: inset 0 1px 2px rgba(255,255,255,0.4), inset 0 -2px 3px rgba(0,0,0,0.4); }
+  .seal svg{ width:11px; height:11px; }
+  .navlinks{ display:flex; gap:26px; font-size:13.5px; opacity:0.75; }
+  @media(max-width:700px){ .navlinks{ display:none; } }
+  .nav-cta{ font-size:13px; font-weight:600; padding:9px 16px; border-radius:7px; }
+
+  h1{ font-family:'Fraunces',serif; font-weight:450; font-size:clamp(30px,4vw,42px); line-height:1.06; max-width:11.5ch; }
+  p.lede{ font-size:15.5px; opacity:0.75; max-width:44ch; margin-top:16px; line-height:1.6; }
+  .ctas{ display:flex; gap:12px; margin-top:26px; flex-wrap:wrap; }
+  .btn{ font-size:13.5px; font-weight:600; padding:11px 20px; border-radius:8px; }
+  .btn-outline{ border:1px solid rgba(255,255,255,0.25); background:rgba(255,255,255,0.02); }
+
+  .cards{ position:relative; height:220px; }
+  .card{ position:absolute; width:190px; border-radius:9px; padding:14px; font-size:11.5px; box-shadow:0 20px 36px -14px rgba(0,0,0,0.6); }
+  .card .cn{ font-family:'Fraunces',serif; font-size:14.5px; margin-top:2px; }
+  .card .cc{ opacity:0.65; font-size:10.5px; }
+  .c1{ top:0; left:6%; transform:rotate(-3deg); z-index:2; }
+  .c2{ top:100px; left:42%; transform:rotate(2.5deg); z-index:3; }
+  .c3{ top:34px; left:70%; width:160px; transform:rotate(4deg); z-index:1; }
+  @media(max-width:860px){ .cards{ display:none; } }
+</style>
+</head>
+<body>
+
+<!-- A: Indigo & Copper -->
+<div class="label-bar"><b>A — Indigo &amp; Copper</b>navy base, copper accent</div>
+<div class="hero-block" style="background:radial-gradient(120% 160% at 15% 0%, #1B2440, #0B0E18 70%); color:#EDE9DD;">
+  <nav>
+    <div class="brand"><div class="seal" style="background:conic-gradient(from 210deg,#D98F53,#C9793E,#8F5527,#C9793E,#D98F53);"><svg viewBox="0 0 32 32" fill="none"><path d="M8 17 L14 23 L24 9" stroke="#0B0E18" stroke-width="4" stroke-linecap="square"/></svg></div>BL·OWN</div>
+    <div class="navlinks"><span>How it works</span><span>Verification</span><span>Browse</span></div>
+    <a class="nav-cta" style="background:#C9793E; color:#0B0E18;">List your business</a>
+  </nav>
+  <div class="hero-inner">
+    <div>
+      <h1>Find it. Book it. Keep it Black&#8209;owned.</h1>
+      <p class="lede">One place to discover, review, and buy from verified Black-owned businesses near you.</p>
+      <div class="ctas"><a class="btn" style="background:#C9793E; color:#0B0E18;">Browse businesses</a><a class="btn btn-outline">List your business</a></div>
+    </div>
+    <div class="cards">
+      <div class="card c1" style="background:linear-gradient(155deg,#5B7A6B,#33473D);"><div class="cc">Home Services</div><div class="cn">Rooted Renovations</div></div>
+      <div class="card c2" style="background:linear-gradient(155deg,#C9793E,#8F5527);"><div class="cc">Beauty &amp; Wellness</div><div class="cn">Glow Atelier</div></div>
+      <div class="card c3" style="background:linear-gradient(155deg,#232E50,#161C33); border:1px solid rgba(255,255,255,0.12);"><div class="cc">Food &amp; Bev</div><div class="cn">Millbrook Kitchen</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- B: Plum & Gold -->
+<div class="label-bar"><b>B — Plum &amp; Gold</b>aubergine base, gold accent</div>
+<div class="hero-block" style="background:radial-gradient(120% 160% at 15% 0%, #2E1B33, #140B18 70%); color:#F2E9E3;">
+  <nav>
+    <div class="brand"><div class="seal" style="background:conic-gradient(from 210deg,#E6C063,#D9A93E,#9C7526,#D9A93E,#E6C063);"><svg viewBox="0 0 32 32" fill="none"><path d="M8 17 L14 23 L24 9" stroke="#140B18" stroke-width="4" stroke-linecap="square"/></svg></div>BL·OWN</div>
+    <div class="navlinks"><span>How it works</span><span>Verification</span><span>Browse</span></div>
+    <a class="nav-cta" style="background:#D9A93E; color:#140B18;">List your business</a>
+  </nav>
+  <div class="hero-inner">
+    <div>
+      <h1>Find it. Book it. Keep it Black&#8209;owned.</h1>
+      <p class="lede">One place to discover, review, and buy from verified Black-owned businesses near you.</p>
+      <div class="ctas"><a class="btn" style="background:#D9A93E; color:#140B18;">Browse businesses</a><a class="btn btn-outline">List your business</a></div>
+    </div>
+    <div class="cards">
+      <div class="card c1" style="background:linear-gradient(155deg,#7A3B4A,#4A2029;);"><div class="cc">Home Services</div><div class="cn">Rooted Renovations</div></div>
+      <div class="card c2" style="background:linear-gradient(155deg,#D9A93E,#9C7526);"><div class="cc">Beauty &amp; Wellness</div><div class="cn">Glow Atelier</div></div>
+      <div class="card c3" style="background:linear-gradient(155deg,#3A2340,#211129); border:1px solid rgba(255,255,255,0.12);"><div class="cc">Food &amp; Bev</div><div class="cn">Millbrook Kitchen</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- C: Ink & Emerald -->
+<div class="label-bar"><b>C — Ink &amp; Emerald</b>cool blue-black, emerald accent</div>
+<div class="hero-block" style="background:radial-gradient(120% 160% at 15% 0%, #10201C, #08100D 70%); color:#E9F0EC;">
+  <nav>
+    <div class="brand"><div class="seal" style="background:conic-gradient(from 210deg,#5FC499,#3FA579,#297A57,#3FA579,#5FC499);"><svg viewBox="0 0 32 32" fill="none"><path d="M8 17 L14 23 L24 9" stroke="#08100D" stroke-width="4" stroke-linecap="square"/></svg></div>BL·OWN</div>
+    <div class="navlinks"><span>How it works</span><span>Verification</span><span>Browse</span></div>
+    <a class="nav-cta" style="background:#3FA579; color:#08100D;">List your business</a>
+  </nav>
+  <div class="hero-inner">
+    <div>
+      <h1>Find it. Book it. Keep it Black&#8209;owned.</h1>
+      <p class="lede">One place to discover, review, and buy from verified Black-owned businesses near you.</p>
+      <div class="ctas"><a class="btn" style="background:#3FA579; color:#08100D;">Browse businesses</a><a class="btn btn-outline">List your business</a></div>
+    </div>
+    <div class="cards">
+      <div class="card c1" style="background:linear-gradient(155deg,#E07856,#A2503A);"><div class="cc">Home Services</div><div class="cn">Rooted Renovations</div></div>
+      <div class="card c2" style="background:linear-gradient(155deg,#3FA579,#297A57);"><div class="cc">Beauty &amp; Wellness</div><div class="cn">Glow Atelier</div></div>
+      <div class="card c3" style="background:linear-gradient(155deg,#16302A,#0D1A16); border:1px solid rgba(255,255,255,0.12);"><div class="cc">Food &amp; Bev</div><div class="cn">Millbrook Kitchen</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- D: Heritage Modern -->
+<div class="label-bar"><b>D — Heritage Modern</b>neutral charcoal, muted red/green/gold accents</div>
+<div class="hero-block" style="background:radial-gradient(120% 160% at 15% 0%, #221E1B, #100E0D 70%); color:#F0EBE2;">
+  <nav>
+    <div class="brand"><div class="seal" style="background:conic-gradient(from 210deg,#D9B45C,#C79A3E,#8F6B26,#C79A3E,#D9B45C);"><svg viewBox="0 0 32 32" fill="none"><path d="M8 17 L14 23 L24 9" stroke="#100E0D" stroke-width="4" stroke-linecap="square"/></svg></div>BL·OWN</div>
+    <div class="navlinks"><span>How it works</span><span>Verification</span><span>Browse</span></div>
+    <a class="nav-cta" style="background:#C79A3E; color:#100E0D;">List your business</a>
+  </nav>
+  <div class="hero-inner">
+    <div>
+      <h1>Find it. Book it. Keep it Black&#8209;owned.</h1>
+      <p class="lede">One place to discover, review, and buy from verified Black-owned businesses near you.</p>
+      <div class="ctas"><a class="btn" style="background:#C79A3E; color:#100E0D;">Browse businesses</a><a class="btn btn-outline">List your business</a></div>
+    </div>
+    <div class="cards">
+      <div class="card c1" style="background:linear-gradient(155deg,#3E6B52,#25402F);"><div class="cc">Home Services</div><div class="cn">Rooted Renovations</div></div>
+      <div class="card c2" style="background:linear-gradient(155deg,#8C3B33,#5C2620);"><div class="cc">Beauty &amp; Wellness</div><div class="cn">Glow Atelier</div></div>
+      <div class="card c3" style="background:linear-gradient(155deg,#2A2521,#181513); border:1px solid rgba(255,255,255,0.12);"><div class="cc">Food &amp; Bev</div><div class="cn">Millbrook Kitchen</div></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

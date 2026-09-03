@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BL.OWN — brand & palette exploration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,350;0,9..144,500;0,9..144,600&family=Space+Grotesk:wght@500;600;700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#120E0B; --card:#1A1410; --ivory:#F3ECDD; --muted:#B8A98F; --muted-dim:#8A7B65;
+    --line: rgba(243,236,221,0.14);
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--ivory); font-family:'Public Sans',sans-serif; padding:60px 24px 90px; position:relative; }
+  body::before{
+    content:""; position:fixed; inset:0; pointer-events:none; opacity:0.05; mix-blend-mode:overlay; z-index:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap{ max-width:1080px; margin:0 auto; position:relative; z-index:1; }
+  .intro{ max-width:64ch; margin-bottom:56px; }
+  .intro h1{ font-family:'Fraunces',serif; font-weight:500; font-size:30px; margin-bottom:12px; }
+  .intro p{ color:var(--muted); font-size:15.5px; line-height:1.65; }
+  h2.section-title{ font-family:'Fraunces',serif; font-weight:500; font-size:22px; margin:56px 0 22px; }
+
+  /* ---- merged wordmark ---- */
+  .mark-stage{
+    background:radial-gradient(120% 140% at 30% 0%, #241A12 0%, #150F0B 60%), var(--card);
+    border:1px solid var(--line); border-radius:14px; padding:64px 40px;
+    display:flex; flex-direction:column; align-items:center; text-align:center;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.05) inset, 0 30px 60px -20px rgba(0,0,0,0.65);
+  }
+  .seal{
+    width:76px; height:76px; border-radius:50%; margin-bottom:26px; position:relative;
+    background: conic-gradient(from 210deg, #E0B25A, #C89B3C, #8C6A28, #C89B3C, #E0B25A);
+    box-shadow: 0 12px 24px -6px rgba(0,0,0,0.6), inset 0 2px 3px rgba(255,255,255,0.35), inset 0 -3px 5px rgba(0,0,0,0.5);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .seal::after{
+    content:""; position:absolute; inset:8px; border-radius:50%; border:1.5px dashed rgba(18,14,11,0.35);
+  }
+  .seal svg{ width:32px; height:32px; position:relative; z-index:2; }
+  .wordmark-big{ font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:56px; letter-spacing:-0.01em; line-height:1; }
+  .wordmark-big .bl{ color:#E0B25A; }
+  .wordmark-big .dot{ color:#7A6A50; margin:0 2px; }
+  .wordmark-big .own{ color:var(--ivory); }
+  .tagline{ font-family:'Fraunces',serif; font-style:italic; font-size:18px; color:var(--muted); margin-top:18px; }
+  .subclaim{ font-size:13px; color:var(--muted-dim); margin-top:8px; letter-spacing:0.02em; }
+  .rationale{ margin-top:36px; max-width:60ch; text-align:left; }
+  .rationale p{ color:var(--muted); font-size:14.5px; line-height:1.7; margin-bottom:12px; }
+  .rationale b{ color:var(--ivory); }
+
+  /* ---- palette swatch cards ---- */
+  .palettes{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  @media(max-width:860px){ .palettes{ grid-template-columns:1fr; } }
+  .palette-card{
+    border-radius:12px; padding:26px; border:1px solid var(--line);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.04) inset, 0 24px 44px -18px rgba(0,0,0,0.6);
+  }
+  .palette-card h3{ font-family:'Fraunces',serif; font-weight:500; font-size:18px; margin-bottom:4px; }
+  .palette-card .rec{ display:inline-block; font-size:11px; background:#E0B25A; color:#1A1410; padding:3px 9px; border-radius:20px; font-weight:600; margin-bottom:14px; }
+  .swatch-row{ display:flex; gap:6px; margin:14px 0; }
+  .swatch{ flex:1; height:42px; border-radius:5px; border:1px solid rgba(255,255,255,0.08); }
+  .palette-card p.desc{ font-size:13.5px; color:var(--muted); line-height:1.6; margin-top:10px; }
+
+  /* mini depth demo per palette */
+  .mini-demo{ margin-top:18px; border-radius:8px; padding:18px; position:relative; overflow:hidden; }
+  .mini-demo .glass{
+    background:rgba(255,255,255,0.06); backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.14); border-radius:7px; padding:12px 14px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 10px 20px -8px rgba(0,0,0,0.5);
+    font-size:12.5px; color:var(--ivory);
+  }
+
+  .verdict{ margin-top:44px; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:30px 34px; box-shadow:0 1px 0 rgba(255,255,255,0.04) inset, 0 20px 40px -18px rgba(0,0,0,0.55); }
+  .verdict h3{ font-family:'Fraunces',serif; font-size:17px; margin-bottom:10px; }
+  .verdict p{ color:var(--muted); font-size:14.5px; line-height:1.7; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="intro">
+    <h1>BL.OWN — merged direction</h1>
+    <p>This fuses Ledger's institutional trust-mark (the seal, the "certified" framing) with OwnBlack's directness (a checkmark built into the icon, a name that says exactly what it is). The tagline does the disambiguation work your name needs — it's always paired with the mark on first contact, so nobody's left guessing how to say it.</p>
+  </div>
+
+  <div class="mark-stage">
+    <div class="seal">
+      <svg viewBox="0 0 32 32" fill="none"><path d="M8 17 L14 23 L24 9" stroke="#1A1410" stroke-width="3.2" stroke-linecap="square" stroke-linejoin="miter"/></svg>
+    </div>
+    <div class="wordmark-big"><span class="bl">BL</span><span class="dot">·</span><span class="own">OWN</span></div>
+    <div class="tagline">Certified BL·OWN</div>
+    <div class="subclaim">Black-Owned. Verified. Found.</div>
+
+    <div class="rationale">
+      <p><b>Why the seal:</b> it's literally a stamp — round, embossed, slightly dimensional — so it reads as "certified" before anyone parses the checkmark inside it. It doubles as the verification badge you'll show on every business profile, so the logo and the trust signal are visually the same object.</p>
+      <p><b>Why the tagline stays close:</b> "Certified BL·OWN" gives the acronym away immediately, and "Black-Owned. Verified. Found." spells it out in three plain words underneath. Once people know the platform, the tagline can shrink or drop — but every first touchpoint (nav, app icon splash, email footer) should carry it for at least the first year.</p>
+      <p><b>Pronunciation note:</b> lean into it rather than fight it — "BLOWN" said out loud (like blown away) is a genuinely good double meaning for a platform about making an impression. Worth testing as a verbal tagline too: "Get BLOWN away."</p>
+    </div>
+  </div>
+
+  <h2 class="section-title">Palette options — built for depth, not flat fills</h2>
+  <div class="palettes">
+
+    <div class="palette-card" style="background:#1A1410;">
+      <span class="rec">Recommended</span>
+      <h3>Brass &amp; Oxblood</h3>
+      <div class="swatch-row">
+        <div class="swatch" style="background:#120E0B;"></div>
+        <div class="swatch" style="background:#E0B25A;"></div>
+        <div class="swatch" style="background:#6B1F2A;"></div>
+        <div class="swatch" style="background:#2F4A3C;"></div>
+        <div class="swatch" style="background:#F3ECDD;"></div>
+      </div>
+      <p class="desc">Swaps the old clay accent for a deep oxblood/burgundy — richer, more "certified document / wax seal" than the old terracotta, and it pairs better with brass metallics for embossed elements.</p>
+      <div class="mini-demo" style="background:radial-gradient(120% 140% at 20% 0%, #241A12, #120E0B 65%);">
+        <div class="glass">Verified badge · 4.9★</div>
+      </div>
+    </div>
+
+    <div class="palette-card" style="background:#14100D;">
+      <h3>Obsidian &amp; Gold</h3>
+      <div class="swatch-row">
+        <div class="swatch" style="background:#0E0C0A;"></div>
+        <div class="swatch" style="background:#D4AF37;"></div>
+        <div class="swatch" style="background:#1F3B36;"></div>
+        <div class="swatch" style="background:#5C4A2E;"></div>
+        <div class="swatch" style="background:#F4EEE0;"></div>
+      </div>
+      <p class="desc">Truer black, brighter gold — highest contrast and most "luxury app" of the three. Best if you want BL.OWN to feel closer to a premium members' club than a civic directory.</p>
+      <div class="mini-demo" style="background:radial-gradient(120% 140% at 20% 0%, #1C1712, #0E0C0A 65%);">
+        <div class="glass">Verified badge · 4.9★</div>
+      </div>
+    </div>
+
+    <div class="palette-card" style="background:#17110C;">
+      <h3>Copper Noir</h3>
+      <div class="swatch-row">
+        <div class="swatch" style="background:#17110C;"></div>
+        <div class="swatch" style="background:#C56A32;"></div>
+        <div class="swatch" style="background:#2C4034;"></div>
+        <div class="swatch" style="background:#4A3820;"></div>
+        <div class="swatch" style="background:#F1E8D8;"></div>
+      </div>
+      <p class="desc">Warmer overall, copper instead of brass. Friendlier and less formal — a good option if reviews and community trust matter more to your positioning than the certification/institutional angle.</p>
+      <div class="mini-demo" style="background:radial-gradient(120% 140% at 20% 0%, #241C13, #17110C 65%);">
+        <div class="glass">Verified badge · 4.9★</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="verdict">
+    <h3>Recommendation</h3>
+    <p><b>Brass &amp; Oxblood</b> — it keeps the "certified document" feeling that makes the verification tiers credible, while the oxblood gives you a second strong accent color for things like error states, "closing soon" tags, or premium-tier badges without reaching for a generic red. I've rebuilt the wireframes below using this palette, the merged seal mark, and actual layered depth — glass panels, elevation shadows, and an embossed badge — instead of flat cards.</p>
+  </div>
+</div>
+</body>
+</html>

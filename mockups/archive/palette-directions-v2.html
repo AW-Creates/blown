@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BL.OWN — new palette directions</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,450;0,9..144,600&family=Space+Grotesk:wght@600;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:#0C0C0D; color:#EDEDEF; font-family:'Public Sans',sans-serif; padding:56px 24px 90px; }
+  .wrap{ max-width:1120px; margin:0 auto; }
+  .intro{ max-width:66ch; margin-bottom:48px; }
+  .intro h1{ font-family:'Fraunces',serif; font-weight:500; font-size:28px; margin-bottom:12px; color:#F4F1EC; }
+  .intro p{ color:#9A968E; font-size:15.5px; line-height:1.65; }
+
+  .direction{ margin-bottom:56px; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,0.08); }
+  .dir-preview{ padding:44px 40px; position:relative; }
+  .dir-label{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; flex-wrap:wrap; gap:12px; }
+  .dir-label h2{ font-family:'Fraunces',serif; font-weight:500; font-size:22px; }
+  .dir-label .desc{ font-size:13.5px; max-width:44ch; opacity:0.8; margin-top:6px; }
+  .swatches{ display:flex; gap:6px; }
+  .sw{ width:34px; height:34px; border-radius:6px; border:1px solid rgba(255,255,255,0.15); }
+
+  .demo-row{ display:grid; grid-template-columns:1.3fr 1fr; gap:16px; }
+  @media(max-width:760px){ .demo-row{ grid-template-columns:1fr; } }
+
+  .demo-card{ border-radius:10px; padding:18px; }
+  .demo-card .brand-row{ display:flex; align-items:center; gap:8px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px; margin-bottom:14px; }
+  .demo-card .biz-name{ font-family:'Fraunces',serif; font-weight:600; font-size:17px; }
+  .demo-card .biz-meta{ font-size:12px; opacity:0.65; margin-top:3px; }
+  .demo-card .rating{ font-size:12.5px; margin-top:8px; }
+  .demo-card .tags{ display:flex; gap:6px; margin-top:10px; flex-wrap:wrap; }
+  .demo-card .tags span{ font-size:10.5px; padding:3px 8px; border-radius:20px; border:1px solid rgba(255,255,255,0.2); }
+  .demo-card .btn{ display:inline-block; margin-top:14px; font-size:12.5px; font-weight:600; padding:9px 16px; border-radius:7px; }
+
+  .seal{ width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow: inset 0 1px 2px rgba(255,255,255,0.4), inset 0 -2px 3px rgba(0,0,0,0.4); }
+  .seal svg{ width:11px; height:11px; }
+
+  .rec-flag{ font-size:11px; padding:4px 10px; border-radius:20px; font-weight:600; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="intro">
+    <h1>Four different directions</h1>
+    <p>Each one shifts the actual hue family, not just the shade — so these should feel meaningfully different from each other and from the brass/oxblood set. Same layout in every preview so you're comparing color, not composition.</p>
+  </div>
+
+  <!-- A: Indigo & Copper -->
+  <div class="direction">
+    <div class="dir-preview" style="background:radial-gradient(120% 140% at 20% 0%, #1B2440, #0E1220 65%); color:#EDE9DD;">
+      <div class="dir-label">
+        <div>
+          <h2>Indigo &amp; Copper</h2>
+          <div class="desc">Deep navy instead of brown — reads as professional and trustworthy (think pinstripe, ledger books, banking) without the coffee-shop warmth of the last set. Copper keeps some heat as the accent.</div>
+        </div>
+        <div class="swatches">
+          <div class="sw" style="background:#0E1220;"></div>
+          <div class="sw" style="background:#1B2440;"></div>
+          <div class="sw" style="background:#C9793E;"></div>
+          <div class="sw" style="background:#5B7A6B;"></div>
+          <div class="sw" style="background:#EDE9DD;"></div>
+        </div>
+      </div>
+      <div class="demo-row">
+        <div class="demo-card" style="background:linear-gradient(160deg,#232E50,#161C33); border:1px solid rgba(255,255,255,0.1);">
+          <div class="biz-name">Millbrook Kitchen</div>
+          <div class="biz-meta">Food &amp; Beverage · Catering · Allentown, PA</div>
+          <div class="rating" style="color:#C9793E;">★★★★★ 4.9 (212 reviews)</div>
+          <div class="tags"><span>NMSDC Certified</span><span>1.2 mi away</span></div>
+        </div>
+        <div class="demo-card" style="background:rgba(255,255,255,0.05); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.15);">
+          <div class="brand-row"><div class="seal" style="background:conic-gradient(from 210deg,#D98F53,#C9793E,#8F5527,#C9793E,#D98F53);"><svg viewBox="0 0 32 32" fill="none"><path d="M8 17 L14 23 L24 9" stroke="#161C33" stroke-width="4" stroke-linecap="square"/></svg></div>BL·OWN</div>
+          <div style="font-size:13px; opacity:0.75;">Certified Black-Owned. Verified.</div>
+          <a class="btn" style="background:#C9793E; color:#161C33;">List your business</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- B: Plum & Gold -->
+  <div class="direction">
+    <div class="dir-preview" style="background:radial-gradient(120% 140% at 20% 0%, #2E1B33, #150B1A 65%); color:#F2E9E3;">
+      <div class="dir-label">
+        <div>
+          <h2>Plum &amp; Gold</h2>
+          <div class="desc">Aubergine instead of black-brown — still dark and premium, but noticeably more contemporary and a little more expressive. Gold stays as the trust/verification color across every direction since it reads as "certified" regardless of base hue.</div>
+        </div>
+        <div class="swatches">
+          <div class="sw" style="background:#150B1A;"></div>
+          <div class="sw" style="background:#2E1B33;"></div>
+          <div class="sw" style="background:#D9A93E;"></div>
+          <div class="sw" style="background:#7A3B4A;"></div>
+          <div class="sw" style="background:#F2E9E3;"></div>
+        </div>
+      </div>
+      <div class="demo-row">
+        <div class="demo-card" style="background:linear-gradient(160deg,#3A2340,#211129); border:1px solid rgba(255,255,255,0.1);">
+          <div class="biz-name">Millbrook Kitchen</div>
+          <div class="biz-meta">Food &amp; Beverage · Catering · Allentown, PA</div>
+          <div class="rating" style="color:#D9A93E;">★★★★★ 4.9 (212 reviews)</div>
+          <div class="tags"><span>NMSDC Certified</span><span>1.2 mi away</span></div>
+        </div>
+        <div class="demo-card" style="background:rgba(255,255,255,0.05); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.15);">
+          <div class="brand-row"><div class="seal" style="background:conic-gradient(from 210deg,#E6C063,#D9A93E,#9C7526,#D9A93E,#E6C063);"><svg viewBox="0 0 32 32" fill="none"><path d="M8 17 L14 23 L24 9" stroke="#211129" stroke-width="4" stroke-linecap="square"/></svg></div>BL·OWN</div>
+          <div style="font-size:13px; opacity:0.75;">Certified Black-Owned. Verified.</div>
+          <a class="btn" style="background:#D9A93E; color:#211129;">List your business</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- C: Ink & Emerald -->
+  <div class="direction">
+    <div class="dir-preview" style="background:radial-gradient(120% 140% at 20% 0%, #10201C, #0A1210 65%); color:#E9F0EC;">
+      <div class="dir-label">
+        <div>
+          <h2>Ink &amp; Emerald</h2>
+          <div class="desc">Cooler, blue-black base with emerald as the primary accent instead of gold/brass — leans into growth and money rather than heritage/certified-document. Coral as a sparing second accent keeps it from feeling corporate-fintech.</div>
+        </div>
+        <div class="swatches">
+          <div class="sw" style="background:#0A1210;"></div>
+          <div class="sw" style="background:#10201C;"></div>
+          <div class="sw" style="background:#3FA579;"></div>
+          <div class="sw" style="background:#E07856;"></div>
+          <div class="sw" style="background:#E9F0EC;"></div>
+        </div>
+      </div>
+      <div class="demo-row">
+        <div class="demo-card" style="background:linear-gradient(160deg,#16302A,#0D1A16); border:1px solid rgba(255,255,255,0.1);">
+          <div class="biz-name">Millbrook Kitchen</div>
+          <div class="biz-meta">Food &amp; Beverage · Catering · Allentown, PA</div>
+          <div class="rating" style="color:#3FA579;">★★★★★ 4.9 (212 reviews)</div>
+          <div class="tags"><span>NMSDC Certified</span><span>1.2 mi away</span></div>
+        </div>
+        <div class="demo-card" style="background:rgba(255,255,255,0.05); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.15);">
+          <div class="brand-row"><div class="seal" style="background:conic-gradient(from 210deg,#5FC499,#3FA579,#297A57,#3FA579,#5FC499);"><svg viewBox="0 0 32 32" fill="none"><path d="M8 17 L14 23 L24 9" stroke="#0D1A16" stroke-width="4" stroke-linecap="square"/></svg></div>BL·OWN</div>
+          <div style="font-size:13px; opacity:0.75;">Certified Black-Owned. Verified.</div>
+          <a class="btn" style="background:#3FA579; color:#0D1A16;">List your business</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- D: Heritage Modern -->
+  <div class="direction">
+    <div class="dir-preview" style="background:radial-gradient(120% 140% at 20% 0%, #221E1B, #131110 65%); color:#F0EBE2;">
+      <div class="dir-label">
+        <div>
+          <h2>Heritage Modern</h2>
+          <div class="desc">A deliberately muted, desaturated take on red/black/green/gold — the colors nod to heritage without reading as a literal flag or a cliché. Used as small accents on a neutral charcoal base rather than as dominant fields.</div>
+          <span class="rec-flag" style="background:#D9A93E; color:#131110; margin-top:10px; display:inline-block;">Also strong</span>
+        </div>
+        <div class="swatches">
+          <div class="sw" style="background:#131110;"></div>
+          <div class="sw" style="background:#8C3B33;"></div>
+          <div class="sw" style="background:#3E6B52;"></div>
+          <div class="sw" style="background:#C79A3E;"></div>
+          <div class="sw" style="background:#F0EBE2;"></div>
+        </div>
+      </div>
+      <div class="demo-row">
+        <div class="demo-card" style="background:linear-gradient(160deg,#2A2521,#181513); border:1px solid rgba(255,255,255,0.1);">
+          <div class="biz-name">Millbrook Kitchen</div>
+          <div class="biz-meta">Food &amp; Beverage · Catering · Allentown, PA</div>
+          <div class="rating" style="color:#C79A3E;">★★★★★ 4.9 (212 reviews)</div>
+          <div class="tags"><span>NMSDC Certified</span><span>1.2 mi away</span></div>
+        </div>
+        <div class="demo-card" style="background:rgba(255,255,255,0.05); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.15);">
+          <div class="brand-row"><div class="seal" style="background:conic-gradient(from 210deg,#D9B45C,#C79A3E,#8F6B26,#C79A3E,#D9B45C);"><svg viewBox="0 0 32 32" fill="none"><path d="M8 17 L14 23 L24 9" stroke="#181513" stroke-width="4" stroke-linecap="square"/></svg></div>BL·OWN</div>
+          <div style="font-size:13px; opacity:0.75;">Certified Black-Owned. Verified.</div>
+          <a class="btn" style="background:#C79A3E; color:#181513;">List your business</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

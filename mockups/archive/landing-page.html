@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ledger — Find, book, and shop Black-owned</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;1,9..144,450&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #14100D;
+    --bg-alt: #1C1712;
+    --bg-raise: #241D16;
+    --ivory: #F2EBDD;
+    --muted: #B8A98F;
+    --muted-dim: #8A7B65;
+    --brass: #C89B3C;
+    --brass-bright: #E0B25A;
+    --clay: #A64B2A;
+    --green: #3C5946;
+    --line: rgba(242,235,221,0.14);
+    --line-soft: rgba(242,235,221,0.08);
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--bg);
+    color:var(--ivory);
+    font-family:'Public Sans', sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{ font-family:'Fraunces', serif; font-weight:450; }
+  a{ color:inherit; text-decoration:none; }
+  img{ max-width:100%; display:block; }
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 32px; }
+  section{ padding:96px 0; }
+  @media(max-width:768px){ section{ padding:64px 0; } .wrap{ padding:0 20px; } }
+
+  /* ---- nav ---- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(20,16,13,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 0;
+  }
+  .wordmark{ font-family:'Fraunces', serif; font-size:22px; letter-spacing:0.01em; }
+  .wordmark span{ color:var(--brass); }
+  .nav-links{ display:flex; gap:36px; font-size:15px; color:var(--muted); }
+  .nav-links a:hover{ color:var(--ivory); }
+  .nav-cta{
+    background:var(--brass); color:#1A1410; font-weight:600; font-size:14px;
+    padding:10px 20px; border-radius:2px; border:1px solid var(--brass);
+    transition:background 0.15s ease;
+  }
+  .nav-cta:hover{ background:var(--brass-bright); }
+  .nav-mobile{ display:none; }
+  @media(max-width:860px){ .nav-links{ display:none; } }
+
+  /* ---- hero ---- */
+  .hero{
+    padding:88px 0 100px;
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center;
+  }
+  @media(max-width:900px){ .hero{ grid-template-columns:1fr; padding:56px 0 64px; } }
+  .hero h1{
+    font-size:clamp(40px, 5.4vw, 64px);
+    line-height:1.04;
+    letter-spacing:-0.01em;
+    max-width:11ch;
+  }
+  .hero p.lede{
+    margin-top:24px; font-size:18px; color:var(--muted); max-width:46ch; line-height:1.6;
+  }
+  .hero-ctas{ display:flex; gap:14px; margin-top:36px; flex-wrap:wrap; }
+  .btn-primary, .btn-secondary{
+    padding:14px 26px; font-size:15px; font-weight:600; border-radius:2px;
+    display:inline-block; transition:all 0.15s ease; border:1px solid transparent;
+  }
+  .btn-primary{ background:var(--brass); color:#1A1410; }
+  .btn-primary:hover{ background:var(--brass-bright); }
+  .btn-secondary{ border-color:var(--line); color:var(--ivory); }
+  .btn-secondary:hover{ border-color:var(--muted); }
+
+  .ledger-strip{
+    margin-top:56px; display:flex; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .ledger-item{
+    flex:1; padding:18px 20px 18px 0; border-right:1px solid var(--line-soft);
+  }
+  .ledger-item:last-child{ border-right:none; }
+  .ledger-item .num{ font-family:'Fraunces', serif; font-size:28px; color:var(--brass); }
+  .ledger-item .label{ font-size:13px; color:var(--muted-dim); margin-top:4px; }
+
+  /* hero collage */
+  .collage{ position:relative; height:460px; }
+  .card-tile{
+    position:absolute; border-radius:6px; padding:16px;
+    border:1px solid var(--line); box-shadow:0 24px 48px -12px rgba(0,0,0,0.55);
+    font-size:13px; color:var(--muted);
+  }
+  .card-tile .cat{ font-size:11px; letter-spacing:0.04em; color:var(--brass); margin-bottom:6px; }
+  .card-tile .name{ font-family:'Fraunces', serif; font-size:17px; color:var(--ivory); }
+  .card-tile .rating{ margin-top:10px; font-size:12px; color:var(--muted-dim); }
+  .t1{ background:linear-gradient(155deg,#3C5946,#28382E); top:0; left:8%; width:230px; transform:rotate(-3deg); z-index:2; }
+  .t2{ background:linear-gradient(155deg,#A64B2A,#7C3A21); top:150px; left:38%; width:220px; transform:rotate(2.5deg); z-index:3; }
+  .t3{ background:linear-gradient(155deg,#2A2320,#1C1712); top:290px; left:4%; width:210px; transform:rotate(-1.5deg); z-index:1; border:1px solid var(--line); }
+  .t4{ background:linear-gradient(155deg,#4A3820,#332711); top:60px; left:60%; width:200px; transform:rotate(4deg); z-index:1; }
+  @media(max-width:900px){ .collage{ height:380px; margin-top:12px; } .card-tile{ width:170px !important; } }
+  @media(max-width:480px){ .collage{ display:none; } }
+
+  /* ---- three paths ---- */
+  .paths{ background:var(--bg-alt); border-top:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft); }
+  .section-head{ max-width:56ch; margin-bottom:48px; }
+  .section-head h2{ font-size:clamp(28px,3.4vw,38px); }
+  .section-head p{ color:var(--muted); margin-top:14px; font-size:16px; }
+  .path-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  .path-card{ background:var(--bg-alt); padding:36px 32px; }
+  .path-card h3{ font-size:22px; margin-bottom:12px; }
+  .path-card p{ color:var(--muted); font-size:15px; line-height:1.6; margin-bottom:20px; }
+  .path-card a{ font-size:14px; color:var(--brass); font-weight:600; border-bottom:1px solid transparent; }
+  .path-card a:hover{ border-color:var(--brass); }
+  @media(max-width:800px){ .path-grid{ grid-template-columns:1fr; } }
+
+  /* ---- verification ---- */
+  .tiers{ display:flex; gap:0; margin-top:56px; align-items:stretch; }
+  .tier{ flex:1; padding:0 28px 0 0; position:relative; }
+  .tier:not(:last-child)::after{
+    content:"→"; position:absolute; right:-2px; top:36px; color:var(--muted-dim); font-size:20px;
+  }
+  .tier-seal{
+    width:44px; height:44px; border:1.5px solid var(--brass); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif;
+    color:var(--brass); font-size:16px; margin-bottom:20px;
+  }
+  .tier h3{ font-size:18px; margin-bottom:10px; }
+  .tier p{ color:var(--muted); font-size:14px; line-height:1.6; }
+  @media(max-width:800px){ .tiers{ flex-direction:column; gap:32px; } .tier:not(:last-child)::after{ content:"↓"; right:auto; left:22px; top:auto; bottom:-28px; } .tier{ padding-right:0; } }
+
+  /* ---- categories ---- */
+  .cat-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  .cat-tile{
+    aspect-ratio:1.3/1; border-radius:6px; padding:18px; display:flex; flex-direction:column; justify-content:flex-end;
+    border:1px solid var(--line); transition:border-color 0.15s ease;
+  }
+  .cat-tile:hover{ border-color:var(--brass); }
+  .cat-tile .cn{ font-family:'Fraunces', serif; font-size:19px; }
+  .cat-tile .cc{ font-size:12px; color:var(--muted-dim); margin-top:4px; }
+  @media(max-width:800px){ .cat-grid{ grid-template-columns:repeat(2,1fr); } }
+
+  /* ---- spotlight ---- */
+  .spotlight{ display:grid; grid-template-columns:0.85fr 1.15fr; gap:56px; align-items:center; background:var(--bg-raise); border:1px solid var(--line); border-radius:8px; padding:52px; }
+  .spotlight-photo{ aspect-ratio:4/5; border-radius:6px; background:linear-gradient(160deg,#4A3820,#1C1712); border:1px solid var(--line); }
+  .spotlight blockquote{ font-family:'Fraunces', serif; font-size:26px; line-height:1.4; font-weight:450; }
+  .spotlight cite{ display:block; margin-top:20px; font-style:normal; font-size:14px; color:var(--muted); }
+  .spotlight cite b{ color:var(--ivory); font-weight:600; }
+  @media(max-width:800px){ .spotlight{ grid-template-columns:1fr; padding:32px; } }
+
+  /* ---- final cta ---- */
+  .final-cta{
+    background:linear-gradient(120deg,#C89B3C,#B4832E);
+    color:#1A1410; border-radius:8px; padding:64px 56px;
+    display:flex; align-items:center; justify-content:space-between; gap:32px; flex-wrap:wrap;
+  }
+  .final-cta h2{ font-size:clamp(26px,3.2vw,34px); max-width:16ch; color:#1A1410; }
+  .final-cta .btn-primary{ background:#1A1410; color:var(--brass-bright); }
+  .final-cta .btn-primary:hover{ background:#241D16; }
+
+  /* ---- footer ---- */
+  footer{ border-top:1px solid var(--line-soft); padding:56px 0 40px; }
+  .foot-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:32px; margin-bottom:48px; }
+  .foot-grid h4{ font-size:13px; color:var(--muted-dim); margin-bottom:14px; font-weight:600; }
+  .foot-grid ul{ list-style:none; }
+  .foot-grid li{ margin-bottom:10px; }
+  .foot-grid a{ font-size:14px; color:var(--muted); }
+  .foot-grid a:hover{ color:var(--ivory); }
+  .foot-bottom{ display:flex; justify-content:space-between; padding-top:24px; border-top:1px solid var(--line-soft); font-size:13px; color:var(--muted-dim); flex-wrap:wrap; gap:12px; }
+  @media(max-width:800px){ .foot-grid{ grid-template-columns:1fr 1fr; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <div class="wordmark">The <span>Ledger</span></div>
+      <div class="nav-links">
+        <a href="#paths">How it works</a>
+        <a href="#trust">Verification</a>
+        <a href="#categories">Browse</a>
+        <a href="#spotlight">Stories</a>
+      </div>
+      <a href="#" class="nav-cta">List your business</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap" style="display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center;">
+    <div>
+      <h1>Find it. Book it. Keep it Black&#8209;owned.</h1>
+      <p class="lede">One place to discover, review, and buy from verified Black-owned businesses near you — and for owners, one place to be found by the people looking for exactly what they sell.</p>
+      <div class="hero-ctas">
+        <a href="#" class="btn-primary">Browse businesses</a>
+        <a href="#" class="btn-secondary">List your business — it's free</a>
+      </div>
+      <div class="ledger-strip">
+        <div class="ledger-item"><div class="num">12,400+</div><div class="label">Businesses listed</div></div>
+        <div class="ledger-item"><div class="num">340</div><div class="label">Cities covered</div></div>
+        <div class="ledger-item"><div class="num">28</div><div class="label">Categories</div></div>
+      </div>
+    </div>
+    <div class="collage">
+      <div class="card-tile t1"><div class="cat">Home Services</div><div class="name">Rooted Renovations</div><div class="rating">★ 4.9 · Verified</div></div>
+      <div class="card-tile t2"><div class="cat">Beauty & Wellness</div><div class="name">Glow Atelier</div><div class="rating">★ 5.0 · Verified</div></div>
+      <div class="card-tile t3"><div class="cat">Food & Bev</div><div class="name">Millbrook Kitchen</div><div class="rating">★ 4.8 · NMSDC Cert.</div></div>
+      <div class="card-tile t4"><div class="cat">Apparel</div><div class="name">Field &amp; Frame Co.</div><div class="rating">★ 4.7 · Online</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="paths" id="paths">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Three ways in, one platform</h2>
+      <p>Whether you're spending, hiring, or selling — the same trusted directory works for you.</p>
+    </div>
+    <div class="path-grid">
+      <div class="path-card">
+        <h3>For shoppers</h3>
+        <p>Search by product, category, or neighborhood. Filter by verification tier, rating, or "ships nationwide" and check out without leaving the site.</p>
+        <a href="#">Start browsing →</a>
+      </div>
+      <div class="path-card">
+        <h3>For service seekers</h3>
+        <p>Compare verified pros, read real reviews, and request quotes directly — contractors, salons, consultants, and more, all in one search.</p>
+        <a href="#">Find a pro →</a>
+      </div>
+      <div class="path-card">
+        <h3>For business owners</h3>
+        <p>Create a profile, get verified, and reach customers who are specifically looking to buy Black. Free to list, upgrade for premium placement.</p>
+        <a href="#">List your business →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="trust">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Verification you can actually trust</h2>
+      <p>Every business on The Ledger carries a badge that tells you exactly how its ownership has been confirmed — no guessing.</p>
+    </div>
+    <div class="tiers">
+      <div class="tier">
+        <div class="tier-seal">1</div>
+        <h3>Self-Attested</h3>
+        <p>Owner confirms Black ownership at signup with a signed statement. Instant listing, entry-level trust.</p>
+      </div>
+      <div class="tier">
+        <div class="tier-seal">2</div>
+        <h3>Verified</h3>
+        <p>Business documents and ID reviewed by our team. Shown with a solid badge across search and profile pages.</p>
+      </div>
+      <div class="tier">
+        <div class="tier-seal">3</div>
+        <h3>NMSDC-Certified</h3>
+        <p>Holds a recognized third-party MBE certification. The highest trust tier, pulled straight from the source.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="categories" style="background:var(--bg-alt); border-top:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft);">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Browse by category</h2>
+      <p>From weekend errands to your next big contract.</p>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-tile" style="background:linear-gradient(155deg,#3C5946,#28382E);"><div class="cn">Food &amp; Bev</div><div class="cc">1,840 listings</div></div>
+      <div class="cat-tile" style="background:linear-gradient(155deg,#A64B2A,#7C3A21);"><div class="cn">Beauty &amp; Wellness</div><div class="cc">2,110 listings</div></div>
+      <div class="cat-tile" style="background:linear-gradient(155deg,#4A3820,#332711);"><div class="cn">Home Services</div><div class="cc">960 listings</div></div>
+      <div class="cat-tile" style="background:linear-gradient(155deg,#2A2320,#1C1712); border:1px solid var(--line);"><div class="cn">Professional &amp; Legal</div><div class="cc">740 listings</div></div>
+      <div class="cat-tile" style="background:linear-gradient(155deg,#3C5946,#28382E);"><div class="cn">Fashion &amp; Apparel</div><div class="cc">1,320 listings</div></div>
+      <div class="cat-tile" style="background:linear-gradient(155deg,#A64B2A,#7C3A21);"><div class="cn">Arts &amp; Culture</div><div class="cc">510 listings</div></div>
+      <div class="cat-tile" style="background:linear-gradient(155deg,#4A3820,#332711);"><div class="cn">Health &amp; Fitness</div><div class="cc">680 listings</div></div>
+      <div class="cat-tile" style="background:linear-gradient(155deg,#2A2320,#1C1712); border:1px solid var(--line);"><div class="cn">Finance &amp; Insurance</div><div class="cc">390 listings</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="spotlight">
+  <div class="wrap">
+    <div class="spotlight">
+      <div class="spotlight-photo"></div>
+      <div>
+        <blockquote>"We got our first out-of-state client within a week of getting Verified. It's the first directory that's actually driven bookings, not just clicks."</blockquote>
+        <cite><b>Dana Ferris</b> — Founder, Millbrook Kitchen · Verified since 2025</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="final-cta">
+      <h2>Ready to be found by the people looking for you?</h2>
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <a href="#" class="btn-primary">List your business</a>
+        <a href="#" class="btn-secondary" style="border-color:rgba(26,20,16,0.3); color:#1A1410;">See how it works</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="wordmark" style="margin-bottom:12px;">The <span>Ledger</span></div>
+        <p style="color:var(--muted); font-size:14px; max-width:32ch;">The trusted directory and marketplace for Black-owned businesses and the people who support them.</p>
+      </div>
+      <div>
+        <h4>Discover</h4>
+        <ul>
+          <li><a href="#">Browse businesses</a></li>
+          <li><a href="#">Categories</a></li>
+          <li><a href="#">Verified pros</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>For business owners</h4>
+        <ul>
+          <li><a href="#">List your business</a></li>
+          <li><a href="#">Get verified</a></li>
+          <li><a href="#">Pricing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Trust & verification</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 The Ledger. All rights reserved.</span>
+      <span>Terms · Privacy</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

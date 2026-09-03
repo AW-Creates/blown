@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BL·OWN — Find, book, and shop Black-owned</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;1,9..144,450&family=Space+Grotesk:wght@600;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root[data-theme="dark"]{
+    --bg:#131518; --bg2:#1B1E22; --bg-alt:#191C20; --card:#1F2226; --card-raise:#262A2E;
+    --ink:#EDEFF0; --muted:#A9ADB2; --muted-dim:#7C8085;
+    --line:rgba(237,239,240,0.13); --line-strong:rgba(237,239,240,0.22);
+    --gold:#C79A3E; --gold-bright:#D9B45C; --red:#8C3B33; --green:#3E6B52;
+    --on-gold:#131518; --shadow-op:0.6;
+  }
+  :root[data-theme="light"]{
+    --bg:#FBF7EE; --bg2:#F2EBDA; --bg-alt:#F5EFE0; --card:#FFFFFF; --card-raise:#FBF7EE;
+    --ink:#221E18; --muted:#6B655A; --muted-dim:#8A8272;
+    --line:rgba(34,30,24,0.12); --line-strong:rgba(34,30,24,0.2);
+    --gold:#B5842C; --gold-bright:#C79A3E; --red:#7A332B; --green:#335A44;
+    --on-gold:#FBF7EE; --shadow-op:0.16;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{ background:var(--bg); color:var(--ink); font-family:'Public Sans',sans-serif; line-height:1.5; transition:background 0.25s ease, color 0.25s ease; }
+  h1,h2,h3,.serif{ font-family:'Fraunces', serif; font-weight:450; }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 32px; }
+  section{ padding:96px 0; }
+  @media(max-width:768px){ section{ padding:64px 0; } .wrap{ padding:0 20px; } }
+
+  header{ position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--line); transition:background 0.25s ease; }
+  nav{ display:flex; align-items:center; justify-content:space-between; padding:16px 0; }
+  .brand{ display:flex; align-items:center; gap:9px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:19px; }
+  .seal{ width:29px; height:29px; border-radius:50%; background:conic-gradient(from 210deg,var(--gold-bright),var(--gold),#7C5E22,var(--gold),var(--gold-bright));
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.4), inset 0 -2px 3px rgba(0,0,0,calc(var(--shadow-op) * 0.6)); display:flex; align-items:center; justify-content:center; }
+  .seal svg{ width:12px; height:12px; }
+  .nav-links{ display:flex; gap:32px; font-size:14.5px; color:var(--muted); }
+  .nav-links a:hover{ color:var(--ink); }
+  @media(max-width:900px){ .nav-links{ display:none; } }
+  .nav-right{ display:flex; align-items:center; gap:14px; }
+  .theme-toggle{ display:flex; align-items:center; gap:6px; border:1px solid var(--line-strong); border-radius:20px; padding:5px; cursor:pointer; }
+  .theme-toggle span{ font-size:11px; padding:5px 10px; border-radius:16px; color:var(--muted-dim); }
+  .theme-toggle span.active{ background:var(--gold); color:var(--on-gold); font-weight:600; }
+  .nav-cta{ background:var(--gold); color:var(--on-gold); font-weight:600; font-size:14px; padding:10px 20px; border-radius:7px; box-shadow:0 8px 16px -6px rgba(0,0,0,calc(var(--shadow-op) * 0.5)); }
+
+  .hero{ padding:84px 0 96px; display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center; }
+  @media(max-width:900px){ .hero{ grid-template-columns:1fr; padding:52px 0 60px; } }
+  .hero h1{ font-size:clamp(38px, 5.2vw, 60px); line-height:1.05; letter-spacing:-0.01em; max-width:11.5ch; }
+  .hero p.lede{ margin-top:22px; font-size:17px; color:var(--muted); max-width:46ch; line-height:1.6; }
+  .hero-ctas{ display:flex; gap:14px; margin-top:32px; flex-wrap:wrap; }
+  .btn-primary,.btn-secondary{ padding:14px 26px; font-size:15px; font-weight:600; border-radius:8px; display:inline-block; }
+  .btn-primary{ background:var(--gold); color:var(--on-gold); box-shadow:0 10px 22px -8px rgba(0,0,0,calc(var(--shadow-op)*0.6)); }
+  .btn-secondary{ border:1px solid var(--line-strong); color:var(--ink); }
+  .ledger-strip{ margin-top:48px; display:flex; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .ledger-item{ flex:1; padding:16px 18px 16px 0; border-right:1px solid var(--line); }
+  .ledger-item:last-child{ border-right:none; }
+  .ledger-item .num{ font-family:'Fraunces', serif; font-size:26px; color:var(--gold); }
+  .ledger-item .label{ font-size:12.5px; color:var(--muted-dim); margin-top:4px; }
+
+  .collage{ position:relative; height:420px; }
+  .card-tile{ position:absolute; border-radius:9px; padding:15px; box-shadow: 0 20px 40px -14px rgba(0,0,0,calc(var(--shadow-op))); font-size:12.5px; }
+  .card-tile .cat{ font-size:10.5px; opacity:0.75; margin-bottom:5px; }
+  .card-tile .name{ font-family:'Fraunces', serif; font-size:16px; }
+  .card-tile .rating{ margin-top:9px; font-size:11.5px; opacity:0.65; }
+  .t1{ background:linear-gradient(155deg,var(--green),#243A2E); color:#fff; top:0; left:6%; width:215px; transform:rotate(-3deg); z-index:2; }
+  .t2{ background:linear-gradient(155deg,var(--red),#5C2620); color:#fff; top:140px; left:38%; width:205px; transform:rotate(2.5deg); z-index:3; }
+  .t3{ background:var(--card); border:1px solid var(--line); top:270px; left:2%; width:195px; transform:rotate(-1.5deg); z-index:1; box-shadow:0 20px 40px -14px rgba(0,0,0,calc(var(--shadow-op)*0.7)); }
+  .t4{ background:linear-gradient(155deg,var(--gold),#7C5E22); color:var(--on-gold); top:55px; left:60%; width:190px; transform:rotate(4deg); z-index:1; }
+  @media(max-width:900px){ .collage{ height:360px; } .card-tile{ width:165px !important; } }
+  @media(max-width:480px){ .collage{ display:none; } }
+
+  .paths{ background:var(--bg-alt); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .section-head{ max-width:56ch; margin-bottom:44px; }
+  .section-head h2{ font-size:clamp(27px,3.3vw,36px); }
+  .section-head p{ color:var(--muted); margin-top:12px; font-size:15.5px; }
+  .path-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  .path-card{ background:var(--bg-alt); padding:34px 30px; }
+  .path-card h3{ font-size:21px; margin-bottom:10px; }
+  .path-card p{ color:var(--muted); font-size:14.5px; line-height:1.6; margin-bottom:18px; }
+  .path-card a{ font-size:13.5px; color:var(--gold); font-weight:600; }
+  @media(max-width:800px){ .path-grid{ grid-template-columns:1fr; } }
+
+  .tiers{ display:flex; gap:0; margin-top:48px; }
+  .tier{ flex:1; padding:0 26px 0 0; position:relative; }
+  .tier:not(:last-child)::after{ content:"→"; position:absolute; right:-2px; top:32px; color:var(--muted-dim); font-size:19px; }
+  .tier-seal{ width:42px; height:42px; border:1.5px solid var(--gold); border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; color:var(--gold); font-size:15px; margin-bottom:18px; }
+  .tier h3{ font-size:17px; margin-bottom:9px; }
+  .tier p{ color:var(--muted); font-size:13.5px; line-height:1.6; }
+  @media(max-width:800px){ .tiers{ flex-direction:column; gap:28px; } .tier:not(:last-child)::after{ content:"↓"; right:auto; left:20px; top:auto; bottom:-24px; } }
+
+  .cat-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:13px; }
+  .cat-tile{ aspect-ratio:1.3/1; border-radius:9px; padding:16px; display:flex; flex-direction:column; justify-content:flex-end; border:1px solid var(--line); color:#fff; box-shadow:0 16px 32px -14px rgba(0,0,0,calc(var(--shadow-op)*0.7)); }
+  .cat-tile .cn{ font-family:'Fraunces', serif; font-size:18px; }
+  .cat-tile .cc{ font-size:11.5px; opacity:0.8; margin-top:3px; }
+  @media(max-width:800px){ .cat-grid{ grid-template-columns:repeat(2,1fr); } }
+
+  .spotlight{ display:grid; grid-template-columns:0.85fr 1.15fr; gap:52px; align-items:center; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:48px; box-shadow:0 24px 48px -20px rgba(0,0,0,calc(var(--shadow-op)*0.6)); }
+  .spotlight-photo{ aspect-ratio:4/5; border-radius:9px; background:linear-gradient(160deg,var(--gold),#5C4419); border:1px solid var(--line); }
+  .spotlight blockquote{ font-family:'Fraunces', serif; font-size:24px; line-height:1.4; font-weight:450; }
+  .spotlight cite{ display:block; margin-top:18px; font-style:normal; font-size:13.5px; color:var(--muted); }
+  .spotlight cite b{ color:var(--ink); font-weight:600; }
+  @media(max-width:800px){ .spotlight{ grid-template-columns:1fr; padding:30px; } }
+
+  .final-cta{ background:linear-gradient(120deg,var(--gold-bright),var(--gold)); color:var(--on-gold); border-radius:12px; padding:58px 52px; display:flex; align-items:center; justify-content:space-between; gap:28px; flex-wrap:wrap; }
+  .final-cta h2{ font-size:clamp(25px,3vw,32px); max-width:16ch; color:var(--on-gold); }
+  .final-cta .btn-primary{ background:var(--on-gold); color:var(--gold-bright); }
+
+  footer{ border-top:1px solid var(--line); padding:52px 0 36px; }
+  .foot-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:30px; margin-bottom:44px; }
+  .foot-grid h4{ font-size:12.5px; color:var(--muted-dim); margin-bottom:13px; font-weight:600; }
+  .foot-grid ul{ list-style:none; }
+  .foot-grid li{ margin-bottom:9px; }
+  .foot-grid a{ font-size:13.5px; color:var(--muted); }
+  .foot-bottom{ display:flex; justify-content:space-between; padding-top:22px; border-top:1px solid var(--line); font-size:12.5px; color:var(--muted-dim); flex-wrap:wrap; gap:10px; }
+  @media(max-width:800px){ .foot-grid{ grid-template-columns:1fr 1fr; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <div class="brand"><div class="seal"><svg viewBox="0 0 32 32" fill="none"><path d="M8 17 L14 23 L24 9" stroke="var(--on-gold)" stroke-width="4" stroke-linecap="square"/></svg></div>BL·OWN</div>
+      <div class="nav-links">
+        <a href="#paths">How it works</a>
+        <a href="#trust">Verification</a>
+        <a href="#categories">Browse</a>
+        <a href="#spotlight">Stories</a>
+      </div>
+      <div class="nav-right">
+        <div class="theme-toggle" id="theme-toggle-btn">
+          <span id="lbl-dark" class="active">Dark</span>
+          <span id="lbl-light">Light</span>
+        </div>
+        <a href="#" class="nav-cta">List your business</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap" style="display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center;">
+    <div>
+      <h1>Find it. Book it. Keep it Black&#8209;owned.</h1>
+      <p class="lede">Certified BL·OWN — one place to discover, review, and buy from verified Black-owned businesses near you, and for owners, one place to be found.</p>
+      <div class="hero-ctas">
+        <a href="#" class="btn-primary">Browse businesses</a>
+        <a href="#" class="btn-secondary">List your business — it's free</a>
+      </div>
+      <div class="ledger-strip">
+        <div class="ledger-item"><div class="num">12,400+</div><div class="label">Businesses listed</div></div>
+        <div class="ledger-item"><div class="num">340</div><div class="label">Cities covered</div></div>
+        <div class="ledger-item"><div class="num">28</div><div class="label">Categories</div></div>
+      </div>
+    </div>
+    <div class="collage">
+      <div class="card-tile t1"><div class="cat">Home Services</div><div class="name">Rooted Renovations</div><div class="rating">★ 4.9 · Verified</div></div>
+      <div class="card-tile t2"><div class="cat">Beauty & Wellness</div><div class="name">Glow Atelier</div><div class="rating">★ 5.0 · Verified</div></div>
+      <div class="card-tile t3"><div class="cat">Food & Bev</div><div class="name">Millbrook Kitchen</div><div class="rating">★ 4.8 · NMSDC Cert.</div></div>
+      <div class="card-tile t4"><div class="cat">Apparel</div><div class="name">Field &amp; Frame Co.</div><div class="rating">★ 4.7 · Online</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="paths" id="paths">
+  <div class="wrap">
+    <div class="section-head"><h2>Three ways in, one platform</h2><p>Whether you're spending, hiring, or selling — the same trusted directory works for you.</p></div>
+    <div class="path-grid">
+      <div class="path-card"><h3>For shoppers</h3><p>Search by product, category, or neighborhood. Filter by verification tier, rating, or "ships nationwide" and check out without leaving the site.</p><a href="#">Start browsing →</a></div>
+      <div class="path-card"><h3>For service seekers</h3><p>Compare verified pros, read real reviews, and request quotes directly — contractors, salons, consultants, and more, all in one search.</p><a href="#">Find a pro →</a></div>
+      <div class="path-card"><h3>For business owners</h3><p>Create a profile, get verified, and reach customers who are specifically looking to buy Black. Free to list, upgrade for premium placement.</p><a href="#">List your business →</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="trust">
+  <div class="wrap">
+    <div class="section-head"><h2>Verification you can actually trust</h2><p>Every business on BL·OWN carries a badge that tells you exactly how its ownership has been confirmed — no guessing.</p></div>
+    <div class="tiers">
+      <div class="tier"><div class="tier-seal">1</div><h3>Self-Attested</h3><p>Owner confirms Black ownership at signup with a signed statement. Instant listing, entry-level trust.</p></div>
+      <div class="tier"><div class="tier-seal">2</div><h3>Verified</h3><p>Business documents and ID reviewed by our team. Shown with a solid badge across search and profile pages.</p></div>
+      <div class="tier"><div class="tier-seal">3</div><h3>NMSDC-Certified</h3><p>Holds a recognized third-party MBE certification. The highest trust tier, pulled straight from the source.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="categories" style="background:var(--bg-alt); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head"><h2>Browse by category</h2><p>From weekend errands to your next big contract.</p></div>
+    <div class="cat-grid">
+      <div class="cat-tile" style="background:linear-gradient(155deg,var(--green),#243A2E);"><div class="cn">Food &amp; Bev</div><div class="cc">1,840 listings</div></div>
+      <div class="cat-tile" style="background:linear-gradient(155deg,var(--red),#5C2620);"><div class="cn">Beauty &amp; Wellness</div><div class="cc">2,110 listings</div></div>
+      <div class="cat-tile" style="background:linear-gradient(155deg,var(--gold),#7C5E22); color:var(--on-gold);"><div class="cn">Home Services</div><div class="cc">960 listings</div></div>
+      <div class="cat-tile" style="background:linear-gradient(155deg,#4A4640,#26221E);"><div class="cn">Professional &amp; Legal</div><div class="cc">740 listings</div></div>
+      <div class="cat-tile" style="background:linear-gradient(155deg,var(--green),#243A2E);"><div class="cn">Fashion &amp; Apparel</div><div class="cc">1,320 listings</div></div>
+      <div class="cat-tile" style="background:linear-gradient(155deg,var(--red),#5C2620);"><div class="cn">Arts &amp; Culture</div><div class="cc">510 listings</div></div>
+      <div class="cat-tile" style="background:linear-gradient(155deg,var(--gold),#7C5E22); color:var(--on-gold);"><div class="cn">Health &amp; Fitness</div><div class="cc">680 listings</div></div>
+      <div class="cat-tile" style="background:linear-gradient(155deg,#4A4640,#26221E);"><div class="cn">Finance &amp; Insurance</div><div class="cc">390 listings</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="spotlight">
+  <div class="wrap">
+    <div class="spotlight">
+      <div class="spotlight-photo"></div>
+      <div>
+        <blockquote>"We got our first out-of-state client within a week of getting Verified. It's the first directory that's actually driven bookings, not just clicks."</blockquote>
+        <cite><b>Dana Ferris</b> — Founder, Millbrook Kitchen · Verified since 2025</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="final-cta">
+      <h2>Ready to be found by the people looking for you?</h2>
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <a href="#" class="btn-primary">List your business</a>
+        <a href="#" class="btn-secondary" style="border-color:rgba(0,0,0,0.2); color:var(--on-gold);">See how it works</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div><div class="brand" style="margin-bottom:12px;"><div class="seal"><svg viewBox="0 0 32 32" fill="none"><path d="M8 17 L14 23 L24 9" stroke="var(--on-gold)" stroke-width="4" stroke-linecap="square"/></svg></div>BL·OWN</div><p style="color:var(--muted); font-size:13.5px; max-width:32ch;">The trusted directory and marketplace for Black-owned businesses and the people who support them.</p></div>
+      <div><h4>Discover</h4><ul><li><a href="#">Browse businesses</a></li><li><a href="#">Categories</a></li><li><a href="#">Verified pros</a></li></ul></div>
+      <div><h4>For business owners</h4><ul><li><a href="#">List your business</a></li><li><a href="#">Get verified</a></li><li><a href="#">Pricing</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="#">About</a></li><li><a href="#">Trust &amp; verification</a></li><li><a href="#">Contact</a></li></ul></div>
+    </div>
+    <div class="foot-bottom"><span>© 2026 BL·OWN. All rights reserved.</span><span>Terms · Privacy</span></div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('theme-toggle-btn').addEventListener('click', function(){
+  const html = document.documentElement;
+  const nowDark = html.getAttribute('data-theme') === 'dark';
+  const next = nowDark ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  document.getElementById('lbl-dark').classList.toggle('active', next === 'dark');
+  document.getElementById('lbl-light').classList.toggle('active', next === 'light');
+});
+</script>
+
+</body>
+</html>

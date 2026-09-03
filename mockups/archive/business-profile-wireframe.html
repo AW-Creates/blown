@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BL.OWN — Business Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,450;0,9..144,600&family=Space+Grotesk:wght@600;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#120E0B; --card:#1C150F; --card-raise:#241B13;
+    --ivory:#F3ECDD; --muted:#B8A98F; --muted-dim:#8A7B65;
+    --brass:#E0B25A; --oxblood:#6B1F2A; --green:#3C5946;
+    --line: rgba(243,236,221,0.13); --line-strong: rgba(243,236,221,0.22);
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--ivory); font-family:'Public Sans',sans-serif; position:relative; }
+  body::before{
+    content:""; position:fixed; inset:0; pointer-events:none; opacity:0.045; mix-blend-mode:overlay; z-index:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 28px; position:relative; z-index:1; }
+
+  header{ border-bottom:1px solid var(--line); background:rgba(18,14,11,0.9); backdrop-filter:blur(10px); position:sticky; top:0; z-index:60; }
+  nav{ display:flex; align-items:center; justify-content:space-between; padding:14px 0; }
+  .brand{ display:flex; align-items:center; gap:10px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:19px; }
+  .brand .seal{ width:30px; height:30px; border-radius:50%; background:conic-gradient(from 210deg,#E0B25A,#C89B3C,#8C6A28,#C89B3C,#E0B25A);
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.35), inset 0 -2px 3px rgba(0,0,0,0.5), 0 4px 8px rgba(0,0,0,0.4);
+    display:flex; align-items:center; justify-content:center; }
+  .brand .seal svg{ width:13px; height:13px; }
+  .brand .bl{ color:var(--brass); } .brand .dot{ color:var(--muted-dim); }
+  .nav-cta{ background:var(--brass); color:#1A1410; font-weight:600; font-size:13.5px; padding:10px 18px; border-radius:7px; box-shadow:0 6px 14px -4px rgba(224,178,90,0.4); }
+
+  .cover{
+    height:280px; margin-top:1px; position:relative;
+    background: radial-gradient(120% 180% at 20% 0%, #4A2A20 0%, #1A120C 65%), linear-gradient(160deg,#3C5946,#1C2A22);
+  }
+  .cover::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(18,14,11,0) 40%, rgba(18,14,11,0.95) 100%); }
+
+  .profile-head{
+    max-width:1180px; margin:-92px auto 0; padding:0 28px; position:relative; z-index:2;
+    display:flex; align-items:flex-end; gap:24px; flex-wrap:wrap;
+  }
+  .avatar{
+    width:132px; height:132px; border-radius:14px; flex-shrink:0;
+    background:linear-gradient(155deg,#6B1F2A,#3A1017);
+    border:4px solid var(--bg);
+    box-shadow: 0 24px 48px -16px rgba(0,0,0,0.75);
+  }
+  .head-info{ padding-bottom:8px; flex:1; min-width:280px; }
+  .name-row{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+  .biz-name{ font-family:'Fraunces',serif; font-weight:600; font-size:32px; }
+  .seal-sm{ width:26px; height:26px; border-radius:50%; background:conic-gradient(from 210deg,#E0B25A,#C89B3C,#8C6A28,#C89B3C,#E0B25A);
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.35), inset 0 -2px 3px rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; }
+  .seal-sm svg{ width:11px; height:11px; }
+  .meta-line{ font-size:14px; color:var(--muted); margin-top:6px; display:flex; gap:14px; flex-wrap:wrap; }
+  .head-ctas{ display:flex; gap:10px; padding-bottom:8px; }
+  .btn-primary{ background:var(--brass); color:#1A1410; font-weight:600; font-size:14px; padding:12px 22px; border-radius:8px; box-shadow:0 10px 20px -6px rgba(224,178,90,0.35); }
+  .btn-secondary{ border:1px solid var(--line-strong); color:var(--ivory); font-size:14px; padding:12px 22px; border-radius:8px; background:rgba(255,255,255,0.03); }
+
+  .tabs{ display:flex; gap:8px; margin:32px 0 28px; border-bottom:1px solid var(--line); }
+  .tab{ font-size:14px; color:var(--muted); padding:12px 6px; border-bottom:2px solid transparent; margin-right:20px; }
+  .tab.on{ color:var(--brass); border-color:var(--brass); font-weight:600; }
+
+  .layout{ display:grid; grid-template-columns:1.5fr 1fr; gap:28px; padding-bottom:80px; }
+  @media(max-width:940px){ .layout{ grid-template-columns:1fr; } }
+
+  .block{
+    background:linear-gradient(160deg, var(--card-raise), var(--card));
+    border:1px solid var(--line); border-radius:12px; padding:26px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 20px 40px -22px rgba(0,0,0,0.65);
+    margin-bottom:22px;
+  }
+  .block h3{ font-family:'Fraunces',serif; font-weight:600; font-size:19px; margin-bottom:14px; }
+  .block p{ color:var(--muted); font-size:14.5px; line-height:1.7; }
+
+  .offer-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:6px; }
+  .offer-card{ border:1px solid var(--line); border-radius:9px; padding:14px; background:rgba(255,255,255,0.02); }
+  .offer-card .oname{ font-weight:600; font-size:14.5px; }
+  .offer-card .oprice{ font-size:13px; color:var(--brass); margin-top:4px; }
+
+  .gallery-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:4px; }
+  .gallery-grid div{ aspect-ratio:1; border-radius:8px; }
+
+  .rating-summary{ display:flex; align-items:center; gap:24px; margin-bottom:20px; }
+  .rating-big{ font-family:'Fraunces',serif; font-size:44px; color:var(--brass); }
+  .rating-bars{ flex:1; }
+  .rbar-row{ display:flex; align-items:center; gap:8px; font-size:12px; color:var(--muted-dim); margin-bottom:5px; }
+  .rbar-track{ flex:1; height:6px; background:rgba(255,255,255,0.06); border-radius:4px; overflow:hidden; }
+  .rbar-fill{ height:100%; background:var(--brass); border-radius:4px; }
+
+  .review{ border-top:1px solid var(--line); padding:16px 0; }
+  .review:first-child{ border-top:none; padding-top:0; }
+  .review .rname{ font-weight:600; font-size:14px; }
+  .review .rstars{ color:var(--brass); font-size:13px; margin:4px 0 8px; }
+  .review p{ font-size:13.5px; }
+
+  .sidebar-block{
+    background:rgba(255,255,255,0.045); backdrop-filter:blur(14px);
+    border:1px solid var(--line-strong); border-radius:12px; padding:24px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.07), 0 24px 48px -22px rgba(0,0,0,0.7);
+    margin-bottom:20px; position:sticky; top:90px;
+  }
+  .sidebar-block h4{ font-size:12.5px; color:var(--muted-dim); margin-bottom:10px; }
+  .contact-row{ display:flex; justify-content:space-between; font-size:13.5px; padding:8px 0; border-bottom:1px solid var(--line); }
+  .contact-row:last-child{ border-bottom:none; }
+  .contact-row span:first-child{ color:var(--muted-dim); }
+  .tier-block{ display:flex; gap:12px; align-items:flex-start; }
+  .tier-block p{ font-size:13px; color:var(--muted); line-height:1.6; margin-top:4px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <div class="brand">
+        <div class="seal"><svg viewBox="0 0 32 32" fill="none"><path d="M8 17 L14 23 L24 9" stroke="#1A1410" stroke-width="4" stroke-linecap="square"/></svg></div>
+        <span><span class="bl">BL</span><span class="dot">·</span>OWN</span>
+      </div>
+      <a href="#" class="nav-cta">List your business</a>
+    </nav>
+  </div>
+</header>
+
+<div class="cover"></div>
+
+<div class="profile-head">
+  <div class="avatar"></div>
+  <div class="head-info">
+    <div class="name-row">
+      <div class="biz-name">Millbrook Kitchen</div>
+      <div class="seal-sm"><svg viewBox="0 0 32 32" fill="none"><path d="M8 17 L14 23 L24 9" stroke="#1A1410" stroke-width="4" stroke-linecap="square"/></svg></div>
+    </div>
+    <div class="meta-line">
+      <span>★★★★★ 4.9 (212 reviews)</span>
+      <span>Food &amp; Beverage · Catering</span>
+      <span>Allentown, PA</span>
+      <span>NMSDC Certified</span>
+    </div>
+  </div>
+  <div class="head-ctas">
+    <a href="#" class="btn-secondary">Message</a>
+    <a href="#" class="btn-primary">Request a quote</a>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="tabs">
+    <span class="tab on">Overview</span>
+    <span class="tab">Menu &amp; Services</span>
+    <span class="tab">Reviews (212)</span>
+    <span class="tab">Photos</span>
+    <span class="tab">Q&amp;A</span>
+  </div>
+
+  <div class="layout">
+    <div>
+      <div class="block">
+        <h3>About Millbrook Kitchen</h3>
+        <p>Started in 2019 out of a home kitchen, Millbrook now caters events of 20 to 200 across the Lehigh Valley — small-batch Southern cooking, made-to-order, with same-week booking for most party sizes. Founder Dana Ferris grew up cooking alongside her grandmother in Millbrook, NC, and named the business after the town that taught her to cook for a crowd.</p>
+      </div>
+
+      <div class="block">
+        <h3>Popular offerings</h3>
+        <div class="offer-grid">
+          <div class="offer-card"><div class="oname">Full-Service Catering</div><div class="oprice">From $28/person</div></div>
+          <div class="offer-card"><div class="oname">Drop-Off Party Trays</div><div class="oprice">From $85/tray</div></div>
+          <div class="offer-card"><div class="oname">Private Chef Dinner</div><div class="oprice">From $400</div></div>
+          <div class="offer-card"><div class="oname">Holiday Meal Boxes</div><div class="oprice">From $65</div></div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3>Photos</h3>
+        <div class="gallery-grid">
+          <div style="background:linear-gradient(155deg,#3C5946,#22301F);"></div>
+          <div style="background:linear-gradient(155deg,#6B1F2A,#3A1017);"></div>
+          <div style="background:linear-gradient(155deg,#4A3820,#2A1F0F);"></div>
+          <div style="background:linear-gradient(155deg,#2A2320,#1A1410);"></div>
+          <div style="background:linear-gradient(155deg,#3C5946,#22301F);"></div>
+          <div style="background:linear-gradient(155deg,#6B1F2A,#3A1017);"></div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3>Reviews</h3>
+        <div class="rating-summary">
+          <div class="rating-big">4.9</div>
+          <div class="rating-bars">
+            <div class="rbar-row"><span style="width:14px;">5</span><div class="rbar-track"><div class="rbar-fill" style="width:88%;"></div></div></div>
+            <div class="rbar-row"><span style="width:14px;">4</span><div class="rbar-track"><div class="rbar-fill" style="width:9%;"></div></div></div>
+            <div class="rbar-row"><span style="width:14px;">3</span><div class="rbar-track"><div class="rbar-fill" style="width:2%;"></div></div></div>
+            <div class="rbar-row"><span style="width:14px;">2</span><div class="rbar-track"><div class="rbar-fill" style="width:1%;"></div></div></div>
+            <div class="rbar-row"><span style="width:14px;">1</span><div class="rbar-track"><div class="rbar-fill" style="width:0%;"></div></div></div>
+          </div>
+        </div>
+        <div class="review">
+          <div class="rname">Tasha M. <span style="color:var(--muted-dim); font-weight:400;">· Verified booking</span></div>
+          <div class="rstars">★★★★★</div>
+          <p>Booked them for a 60-person work event with four days' notice. Food showed up hot, on time, and there was barely anything left. Already rebooked for next quarter.</p>
+        </div>
+        <div class="review">
+          <div class="rname">Marcus D. <span style="color:var(--muted-dim); font-weight:400;">· Verified booking</span></div>
+          <div class="rstars">★★★★★</div>
+          <p>The mac and greens tray alone is worth ordering. Dana's team communicated clearly the whole way through, no surprises on the invoice.</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="sidebar-block">
+        <h4>Contact &amp; hours</h4>
+        <div class="contact-row"><span>Phone</span><span>(610) 555-0148</span></div>
+        <div class="contact-row"><span>Website</span><span>millbrookkitchen.com</span></div>
+        <div class="contact-row"><span>Service area</span><span>25mi of Allentown</span></div>
+        <div class="contact-row"><span>Hours</span><span>Tue–Sat, 9a–6p</span></div>
+      </div>
+
+      <div class="sidebar-block" style="top:340px;">
+        <h4>Verification</h4>
+        <div class="tier-block">
+          <div class="seal-sm" style="flex-shrink:0;"><svg viewBox="0 0 32 32" fill="none"><path d="M8 17 L14 23 L24 9" stroke="#1A1410" stroke-width="4" stroke-linecap="square"/></svg></div>
+          <p><b style="color:var(--ivory);">NMSDC Certified</b> — holds an active Minority Business Enterprise certification, confirmed directly against the registry. Recertifies annually.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand direction concepts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,350;0,9..144,500;0,9..144,600;1,9..144,450&family=Public+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#14100D; --bg-alt:#1C1712; --card:#1F1912;
+    --ivory:#F2EBDD; --muted:#B8A98F; --muted-dim:#8A7B65;
+    --brass:#C89B3C; --clay:#A64B2A; --green:#3C5946;
+    --line: rgba(242,235,221,0.14);
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--ivory); font-family:'Public Sans',sans-serif; padding:56px 24px 80px; }
+  .wrap{ max-width:1020px; margin:0 auto; }
+  .intro{ max-width:60ch; margin-bottom:56px; }
+  .intro h1{ font-family:'Fraunces',serif; font-weight:500; font-size:32px; margin-bottom:14px; }
+  .intro p{ color:var(--muted); font-size:16px; line-height:1.6; }
+  .concept{
+    background:var(--card); border:1px solid var(--line); border-radius:10px;
+    padding:44px; margin-bottom:28px; display:grid; grid-template-columns:280px 1fr; gap:44px;
+  }
+  @media(max-width:760px){ .concept{ grid-template-columns:1fr; } }
+  .mark-stage{
+    background:var(--bg); border:1px solid var(--line); border-radius:8px;
+    display:flex; align-items:center; justify-content:center; padding:32px; min-height:180px;
+  }
+  .meta h2{ font-family:'Fraunces',serif; font-weight:500; font-size:22px; margin-bottom:6px; }
+  .meta .tagline{ font-size:14px; color:var(--muted-dim); font-style:italic; margin-bottom:16px; }
+  .meta p{ color:var(--muted); font-size:14.5px; line-height:1.65; margin-bottom:14px; }
+  .tags{ display:flex; gap:8px; flex-wrap:wrap; margin-top:16px; }
+  .tag{ font-size:12px; padding:5px 11px; border:1px solid var(--line); border-radius:20px; color:var(--muted); }
+
+  /* Concept A: The Ledger */
+  .ledger-wrap{ text-align:center; }
+  .ledger-word{ font-family:'Fraunces',serif; font-size:34px; color:var(--ivory); letter-spacing:0.01em; }
+  .ledger-word b{ color:var(--brass); font-weight:500; }
+  .ledger-rule{ width:120px; height:1px; background:var(--brass); margin:12px auto; position:relative; }
+  .ledger-rule::before, .ledger-rule::after{ content:""; position:absolute; top:-4px; width:1px; height:9px; background:var(--brass); }
+  .ledger-rule::before{ left:0; }
+  .ledger-rule::after{ right:0; }
+  .ledger-sub{ font-size:11px; letter-spacing:0.12em; color:var(--muted-dim); }
+
+  /* Concept B: Sable */
+  .sable-wrap{ text-align:center; }
+  .sable-mark{ width:56px; height:56px; margin:0 auto 14px; position:relative; }
+  .sable-word{ font-family:'Fraunces',serif; font-weight:500; font-size:32px; letter-spacing:0.02em; }
+
+  /* Concept C: OwnBlack */
+  .ownblack-wrap{ text-align:center; }
+  .ob-word{ font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:30px; letter-spacing:-0.01em; }
+  .ob-word .own{ color:var(--muted); }
+  .ob-word .black{ color:var(--ivory); }
+  .ob-icon{ width:52px; height:52px; margin:0 auto 14px; }
+
+  .verdict{ background:var(--bg-alt); border:1px solid var(--line); border-radius:10px; padding:32px 40px; margin-top:16px; }
+  .verdict h3{ font-family:'Fraunces',serif; font-weight:500; font-size:18px; margin-bottom:12px; }
+  .verdict p{ color:var(--muted); font-size:14.5px; line-height:1.7; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="intro">
+    <h1>Three brand directions</h1>
+    <p>Each takes a different angle on the same brief: trust, economic empowerment, and everyday usability. None are final — pick one to push further, or mix elements (e.g. Ledger's palette with OwnBlack's directness).</p>
+  </div>
+
+  <div class="concept">
+    <div class="mark-stage">
+      <div class="ledger-wrap">
+        <div class="ledger-word">The <b>Ledger</b></div>
+        <div class="ledger-rule"></div>
+        <div class="ledger-sub">FIND · BOOK · BUY BLACK-OWNED</div>
+      </div>
+    </div>
+    <div class="meta">
+      <h2>The Ledger</h2>
+      <div class="tagline">"Every business, accounted for."</div>
+      <p>Leans into the economic-empowerment angle — a ledger is literally a record of value and ownership, which doubles as a metaphor for the verification system itself. It reads as established and trustworthy rather than trendy, which matters for a platform asking people to hand over real trust (and real money).</p>
+      <p>Unambiguous when spoken aloud, easy to say, no punctuation tricks. Trade-off: it's a real English word already used by other brands (mostly finance/accounting), so you'd want to check trademark availability in your category and lock the domain early.</p>
+      <div class="tags"><span class="tag">Premium, editorial feel</span><span class="tag">Strong metaphor fit</span><span class="tag">Verify trademark</span></div>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="mark-stage">
+      <div class="sable-wrap">
+        <svg class="sable-mark" viewBox="0 0 56 56">
+          <circle cx="28" cy="28" r="26" fill="none" stroke="#C89B3C" stroke-width="1.5"/>
+          <path d="M28 6 A22 22 0 0 1 28 50 Z" fill="#C89B3C"/>
+        </svg>
+        <div class="sable-word">Sable</div>
+      </div>
+    </div>
+    <div class="meta">
+      <h2>Sable</h2>
+      <div class="tagline">"Black, by definition."</div>
+      <p>Sable is the heraldic term for black — an old word for it, used on coats of arms and family crests to denote nobility and permanence. It sidesteps the literalism of "Black-owned" in the name itself, which gives you more room for elegant, non-on-the-nose visual branding (a single mark, a signet-style seal) rather than needing the concept spelled out every time.</p>
+      <p>Trade-off: it's less immediately self-explanatory than the other two directions — first-time visitors won't know what it does from the name alone, so your tagline and hero copy have to do more work.</p>
+      <div class="tags"><span class="tag">Elegant, understated</span><span class="tag">Needs strong tagline</span><span class="tag">Flexible for sub-brands</span></div>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="mark-stage">
+      <div class="ownblack-wrap">
+        <svg class="ob-icon" viewBox="0 0 52 52">
+          <rect x="4" y="4" width="44" height="44" rx="4" fill="none" stroke="#C89B3C" stroke-width="2"/>
+          <path d="M14 27 L22 35 L38 17" fill="none" stroke="#C89B3C" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"/>
+        </svg>
+        <div class="ob-word"><span class="own">Own</span><span class="black">Black</span></div>
+      </div>
+    </div>
+    <div class="meta">
+      <h2>OwnBlack</h2>
+      <div class="tagline">"Search. Verify. Own it."</div>
+      <p>This is the refined version of your original BL.OWN instinct, keeping the wordplay but fixing the pronunciation problem — it reads correctly the first time, in speech, on a business card, or in a lower-third. The checkmark-in-a-frame icon doubles as "verified" and "ownership stamp," which ties directly to your certification feature.</p>
+      <p>Most direct and contemporary of the three — good fit if you want the app to feel more like a modern consumer product (Yelp/Instagram energy) than an institutional directory. Trade-off: least distinctive of the three names; closer in spirit to existing apps like BlackDollar and BuyBlack, so the visual identity has to carry more of the differentiation.</p>
+      <div class="tags"><span class="tag">Clear & direct</span><span class="tag">Doubles as verify-mark</span><span class="tag">Closest to competitors</span></div>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <h3>My lean</h3>
+    <p><b>The Ledger</b> is the strongest fit for the actual differentiator you're building — verified trust and economic empowerment — and it's the direction the landing page mockup is built around. If you want something that feels faster and more social/consumer-facing instead of institutional, <b>OwnBlack</b> is the safer, more legible evolution of your original idea. I'd avoid deciding on vibes alone — happy to check live domain and basic trademark-class availability for whichever direction you want to pressure-test first.</p>
+  </div>
+</div>
+</body>
+</html>
